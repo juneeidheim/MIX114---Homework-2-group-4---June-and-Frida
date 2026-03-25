@@ -47,9 +47,15 @@ function init() {
 /*
 Fetch a Random Meal from TheMealDB
 Returns a Promise that resolves with the meal object
- */
+ */ 
 function fetchRandomMeal() {
-    // Fill in
+    return fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      return data.meals[0];
+    })
+  // June filled in (TASK DONE)
 }
 
 /*
@@ -59,8 +65,33 @@ Receives a meal object with fields like:
   strIngredientX, strMeasureX, etc.
 */
 function displayMealData(meal) {
-    // Fill in
+  const container = document.getElementById("meal-container")
+
+  let ingredients = "";
+
+  for (let i = 1; i <= 20; i++) {
+    const ingredient = meal[`strIngredient${i}`];
+    const measure = meal[`strMeasure${i}`];
+    
+    if (ingredient && ingredient.trim() !== "") {
+      ingredients += `<li>${ingredient} - ${measure}</li>`;
+    }
+  }
+
+    container.innerHTML = `
+      <h2>${meal.strMeal}</h2>
+      <p><strong>Category:</strong> ${meal.strCategory}</p>
+      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+    
+      <h3>Ingredients</h3>
+      <ul>${ingredients}</ul>
+
+      <h3>Instructions</h3>
+      <p>${meal.strInstructions}</p>
+    `;
 }
+    // June filled in (TASK DONE)
+
 
 /*
 Convert MealDB Category to a TheCocktailDB Spirit
