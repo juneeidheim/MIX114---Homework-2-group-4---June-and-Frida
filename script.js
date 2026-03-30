@@ -111,6 +111,15 @@ If no cocktails found, fetch random
 */
 function fetchCocktailByDrinkIngredient(drinkIngredient) {
     // Fill in
+    return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(drinkIngredient)}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.drinks && data.drinks.length > 0) {
+        return data.drinks[0];
+      } else {
+        return fetchRandomCocktail();
+      }
+    })
 }
 
 /*
