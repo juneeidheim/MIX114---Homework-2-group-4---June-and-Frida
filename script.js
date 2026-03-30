@@ -138,6 +138,16 @@ Display Cocktail Data in the DOM
 */
 function displayCocktailData(cocktail) {
     // Fill in
+    const container = document.getElementById("cocktail-container");
+    const ingridients = [];
+    for (let i = 1; i<=15; i++) {
+      const ingridient = cocktail[`strIngridient${i}`];
+      const measure = cocktail[`strMeasure${i}`];
+      if (ingridient && ingridient.trim() !== "") {
+        const amount = measure ? measure.trim() + " " : "";
+        ingridients.push(`<li>${amount}${ingridient.trim()}</li>`);
+      }
+    }
 }
 
 /*
