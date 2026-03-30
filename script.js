@@ -148,6 +148,15 @@ function displayCocktailData(cocktail) {
         ingridients.push(`<li>${amount}${ingridient.trim()}</li>`);
       }
     }
+    container.innerHTML = `
+      <h2>${cocktail.strDrink}</h2>
+      <img src ="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" />
+      <p><strong>Category:</strong>${cocktail.strCategory}</p>
+      <p><strong>Glass:</strong> ${cocktail.StrGlass}</p>
+      <h3>Ingridients</h3>
+      <ul>${ingridients.join("")}</ul>
+      <p><strong>Instructions:</strong> ${cocktail.strInstructions}</p>
+    `;
 }
 
 /*
