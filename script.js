@@ -128,6 +128,9 @@ Returns a Promise that resolves to cocktail object
 */
 function fetchRandomCocktail() {
     // Fill in
+    return fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+    .then ((response) => response.json())
+    .then ((data) => data.drinks[0]);
 }
 
 /*
